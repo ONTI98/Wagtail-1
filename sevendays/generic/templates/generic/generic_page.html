@@ -5,8 +5,14 @@
 
 {% block content %}
 
-{{page.banner_title}}
+{{page.banner_title}}<br><br>
+{%  image page.banner_image fill-1400x300 as img %}
+<img src="{{img.url}}" alt="{{img.alt}}">
 <h1>
     {{page.introduction}}
 </h1>
+
+<div class="">
+  created by  {{page.author.name}} from {{page.author.company_name}}
+</div>
 {% endblock content %}
