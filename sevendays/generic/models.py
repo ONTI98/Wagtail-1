@@ -5,6 +5,7 @@ from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel
 from wagtail.snippets.models import register_snippet
 
+
 class GenericPage(Page):
     banner_title=models.CharField(max_length=140,default="Welcome to my generic page")
     introduction=models.TextField(max_length=140)
@@ -27,6 +28,8 @@ class GenericPage(Page):
         FieldPanel("banner_title"),
         FieldPanel("introduction"),
         FieldPanel("banner_image"),
+        FieldPanel("author"),
+        
 
     ]
 
@@ -43,9 +46,6 @@ class Author(models.Model):
         null=True,
         related_name="+",
     )
-
-   
-
     panels=[
         FieldPanel("name"),
         FieldPanel("title"),
