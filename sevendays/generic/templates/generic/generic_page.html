@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static wagtailimages_tags %}
+{% load wagtailcore_tags%}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -23,4 +24,5 @@
 <div>
     <a href="{{page.author.company_url}}">Company website</a>
 </div>
+{% include_block page.body %}
 {% endblock content %}
