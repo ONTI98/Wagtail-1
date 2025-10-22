@@ -4,6 +4,9 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel
 from wagtail.snippets.models import register_snippet
+from wagtail.fields import StreamField
+from wagtail import blocks
+from wagtail.images.blocks import ImageBlock
 
 
 class GenericPage(Page):
@@ -23,12 +26,22 @@ class GenericPage(Page):
         on_delete=models.SET_NULL,
         related_name='+', 
     )
+
+    body=StreamField(
+        [
+            'heading',blocks.CharBlock(),
+            'paragraph',blocks.RichTextBlock(),
+            'image',ImageBlock()
+        ],null=True
+    )
+    
     #extends content panels to include banner title
     content_panels=Page.content_panels+[
         FieldPanel("banner_title"),
         FieldPanel("introduction"),
         FieldPanel("banner_image"),
         FieldPanel("author"),
+        FieldPanel("body")
         
 
     ]
